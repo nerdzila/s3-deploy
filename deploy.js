@@ -16,6 +16,7 @@ let deploy = function (params) {
       immutable,
       cacheControl,
       filesToInclude,
+      filePrefix,
     } = params;
 
     const distIdArg = distId ? `--distId ${distId}` : '';
@@ -32,6 +33,7 @@ let deploy = function (params) {
     const privateArg = private ? '--private' : '';
     const cacheFlag = cache ? `--cache ${cache}` : '';
     const filesRegex = filesToInclude ? filesToInclude : '**';
+    const prefix = filePrefix ? `--filePrefix ${filePrefix}` : '';
 
     try {
       const command = `npx s3-deploy@1.4.0 ./${filesRegex} \
@@ -47,6 +49,7 @@ let deploy = function (params) {
                         ${noCacheArg} \
                         ${immutableArg} \
                         ${cacheControlArg} \
+                        ${prefix} \
                         ${privateArg} `;
 
       const cwd = path.resolve(folder);
