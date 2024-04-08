@@ -22,6 +22,8 @@ async function run() {
     const filesToInclude = core.getInput('files-to-include') || null;
     const filePrefix = core.getInput('file-prefix') || null;
 
+    console.log('filePrefix', filePrefix);
+
     await deploy({
       folder,
       bucket,
